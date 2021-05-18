@@ -1,3 +1,4 @@
+import 'package:brew_crew/models/brew.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseService {
@@ -10,14 +11,25 @@ class DatabaseService {
 
   Future updateUserData(String sugars, String name, int strength) async {
     return await brewCollection.doc(uid).set({
-      'sugars': sugars,
       'name': name,
+      'sugars': sugars,
       'strength': strength,
     });
   }
 
   // get brews stream
-  Stream<QuerySnapshot> get brews {
-    return brewCollection.snapshots();
+  Stream<List<Brew>> get brews {
+    return brewCollection.snapshots().map(_brewListFromSnapshot);
+  }
+
+  // brew list from snapshot
+  List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return Brew(
+        name: doc.get('name') ?? '',
+        sugars: doc.get('sugars') ?? '0',
+        strength: doc.get('strength') ?? 0,
+      );
+    }).toList();
   }
 }
