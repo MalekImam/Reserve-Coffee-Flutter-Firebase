@@ -85,9 +85,13 @@ class _SettingsFormState extends State<SettingsForm> {
                     ),
                     style: ElevatedButton.styleFrom(primary: Colors.pinkAccent),
                     onPressed: () async {
-                      print(_currentName);
-                      print(_currentSugars);
-                      print(_currentStrength);
+                      if (_formKey.currentState.validate()) {
+                        await DatabaseService(uid: userData.uid).updateUserData(
+                            _currentSugars ?? userData.brew.sugars,
+                            _currentName ?? userData.brew.name,
+                            _currentStrength ?? userData.brew.strength);
+                        Navigator.pop(context);
+                      }
                     },
                   ),
                 ],
