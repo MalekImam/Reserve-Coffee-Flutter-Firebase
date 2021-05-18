@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:brew_crew/models/brew.dart';
+import 'package:brew_crew/screens/home/brew_tile.dart';
 
 class BrewList extends StatefulWidget {
   BrewList({Key key}) : super(key: key);
@@ -14,14 +15,11 @@ class _BrewListState extends State<BrewList> {
   Widget build(BuildContext context) {
     final brews = Provider.of<List<Brew>>(context);
 
-    brews.forEach((brew) {
-      print(brew.name);
-      print(brew.sugars);
-      print(brew.strength);
-    });
-
-    return Container(
-        //  child: ,
-        );
+    return ListView.builder(
+      itemCount: brews.length,
+      itemBuilder: (context, index) {
+        return BrewTile(brew: brews[index]);
+      },
+    );
   }
 }
