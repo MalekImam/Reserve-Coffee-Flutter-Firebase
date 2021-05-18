@@ -1,9 +1,10 @@
-import 'package:brew_crew/models/brew.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:brew_crew/models/brew.dart';
 import 'package:brew_crew/services/auth.dart';
 import 'package:brew_crew/services/database.dart';
 import 'package:brew_crew/screens/home/brew_list.dart';
+import 'package:brew_crew/screens/home/settings_form.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -16,7 +17,7 @@ class Home extends StatelessWidget {
           builder: (context) {
             return Container(
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-              child: Text('Bottom Sheet'),
+              child: SettingsForm(),
             );
           });
     }
