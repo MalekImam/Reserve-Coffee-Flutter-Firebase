@@ -1,3 +1,4 @@
+import 'package:brew_crew/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:brew_crew/screens/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,7 +26,10 @@ class App extends StatelessWidget {
         }
 
         // Else return loading screen
-        return Text('Loading');
+        return Directionality(
+          textDirection: TextDirection.ltr,
+          child: Loading(),
+        );
       },
     );
   }
