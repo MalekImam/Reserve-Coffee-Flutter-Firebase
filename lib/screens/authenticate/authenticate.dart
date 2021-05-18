@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:brew_crew/screens/authenticate/sign_in.dart';
+import 'package:brew_crew/screens/authenticate/register.dart';
 
 class Authenticate extends StatefulWidget {
   Authenticate({Key key}) : super(key: key);
@@ -12,7 +13,8 @@ class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SignIn(),
+      // child: SignIn(),
+      child: Register(),
     );
   }
 }
